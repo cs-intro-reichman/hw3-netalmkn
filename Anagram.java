@@ -44,12 +44,25 @@ public class Anagram {
     	return true;
 	}
 	   
-	public static String preProcess(String str) {
-		String result = str.replaceAll("[^a-zA-Z]", "");
-		result = result.toLowerCase();
+	public static String preProcess(String s) {
+    String result = "";  
 
-		return result;
-	} 
+    for (int i = 0; i < s.length(); i++) {
+        char c = s.charAt(i);   
+
+        if (c == ' ') {
+            result = result + " ";
+        } else if (c >= 'A' && c <= 'Z') {
+            char lower = (char) (c - 'A' + 'a');
+            result = result + lower;
+        } else if (c >= 'a' && c <= 'z') {
+            result = result + c;
+        }
+    }
+
+    return result;
+}
+
 	   
 	public static String randomAnagram(String str) {
     	String shuffled = "";
