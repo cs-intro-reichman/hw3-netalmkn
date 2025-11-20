@@ -21,28 +21,25 @@ public class Anagram {
 
 	
 	public static boolean isAnagram(String str1, String str2) {
-		str1 = preProcess(str1);
-    	str2 = preProcess(str2);
-		if (str1.length() != str2.length()) {
-        	return false;
-    	}
-		for (int i = 0; i < str1.length(); i++) {
-        	char c = str1.charAt(i);
-        	boolean found = false;
-        
-        	for (int j = 0; j < str2.length(); j++) {
-            	if (str2.charAt(j) == c) {
-                	found = true;
-                	break;
-            	}
-        	}
-        
-        	if (!found) {
-            	return false;
-        	}
-    	}
-    	return true;
+    String s1 = preProcess(str1);
+    String s2 = preProcess(str2);
+
+    if (s1.length() != s2.length()) {
+        return false;
+    }
+
+    for (int i = 0; i < s1.length(); i++) {
+        char c = s1.charAt(i);
+        int index = s2.indexOf(c);
+        if (index == -1) {
+            return false;
+        }
+        s2 = s2.substring(0, index) + s2.substring(index + 1);
+    }
+
+    return s2.length() == 0;
 	}
+
 	   
 	public static String preProcess(String s) {
     String result = "";  
