@@ -24,21 +24,38 @@ public class Anagram {
     String s1 = preProcess(str1);
     String s2 = preProcess(str2);
 
-    if (s1.length() != s2.length()) {
+    String a = "";
+    for (int i = 0; i < s1.length(); i++) {
+        char c = s1.charAt(i);
+        if (c != ' ') {
+            a = a + c;
+        }
+    }
+
+    String b = "";
+    for (int i = 0; i < s2.length(); i++) {
+        char c = s2.charAt(i);
+        if (c != ' ') {
+            b = b + c;
+        }
+    }
+
+    if (a.length() != b.length()) {
         return false;
     }
 
-    for (int i = 0; i < s1.length(); i++) {
-        char c = s1.charAt(i);
-        int index = s2.indexOf(c);
+    for (int i = 0; i < a.length(); i++) {
+        char c = a.charAt(i);
+        int index = b.indexOf(c);
         if (index == -1) {
             return false;
         }
-        s2 = s2.substring(0, index) + s2.substring(index + 1);
+        b = b.substring(0, index) + b.substring(index + 1);
     }
 
-    return s2.length() == 0;
+    return b.length() == 0;
 	}
+
 
 	   
 	public static String preProcess(String s) {
